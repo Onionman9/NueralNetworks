@@ -6,7 +6,12 @@ namespace NueralNetworks
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+        }
+
+        static double Sigmoid(double x) 
+        {
+            return (1.0 / (1.0 + Math.Exp(x)));
         }
     }
 }
