@@ -6,12 +6,49 @@ namespace NueralNetworks
     {
         static void Main(string[] args)
         {
-            
+            // 5 inputs
+            int[] training_input = new int[] { 0,0,1,0,1 };
+
+            // 2 outputs.
+            int[] training_output = new int[] { 0, 1 };
+
+            // 5 input nodes, 1 hidden layer (contains 2 nodes), and 1 output node indicate even or odd.
+            double[,] weight_in = genArray(5, 2);
+            //double[,] weight_out = genArray(2, 1);
+
+
+            //for(int m = 0; m < 5; m++)
+            //{
+            //    for (int n = 0; n < 2; n++)
+            //    {
+            //        Console.Write(weight_in[m, n] + " ");
+            //    }
+            //    Console.WriteLine(); 
+            //}
+
+            double learning_rate = 0.05;
+            double momentum = 0.1;
+           
         }
 
-        static double Sigmoid(double x) 
+
+        private static double Sigmoid(double x) 
         {
             return (1.0 / (1.0 + Math.Exp(x)));
+        }
+
+        private static double[,] genArray(int row, int col)
+        {
+            Random r = new Random();
+            double[,] temp_arr = new double[row, col]; 
+            for(int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    temp_arr[i,j] = r.NextDouble();
+                }
+            }
+            return temp_arr;
         }
     }
 }
