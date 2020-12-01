@@ -113,7 +113,10 @@ namespace NueralNetworks
             int[][] test_case = new int[][]
             {
             new int[] { 1,0,1,0,1 },
-            new int[] { 0,0,1,1,0 }
+            new int[] { 0,0,1,1,0 },
+            new int[] { 1,1,1,1,1 },
+            new int[] { 1,1,1,1,0 },
+            new int[] { 0,0,1,1,1 }
             };
             myNetwork.check_Learned_network(test_case);
 
@@ -153,7 +156,6 @@ namespace NueralNetworks
         int inputCount;
         int hiddenCount;
         int outputCount;
-        // int[] inputWeights;
 
         double[] activeInput;
         double[] activeHidden;
@@ -167,7 +169,7 @@ namespace NueralNetworks
         /*
             Nueral network constructor
          */
-        public NueralNet(int _inputCount, int _hiddenCount, int _outputCount/*, int[] _inputWeights*/) 
+        public NueralNet(int _inputCount, int _hiddenCount, int _outputCount) 
         {
             inputCount = _inputCount + 1;
             hiddenCount = _hiddenCount;
@@ -180,23 +182,7 @@ namespace NueralNetworks
 
             weightArrayIn = genArray(inputCount, hiddenCount);      // weights for Input
             weightArrayOut = genArray(hiddenCount, outputCount);    // Weights for Output
-            /*
-            for (int x = 0; x < inputCount; x++)
-            {
-                for (int y = 0; y < hiddenCount; y++)
-                {
-                    weightArrayIn[x, y] = inputWeights[x];
-                }
-            }
 
-            for (int x = 0; x < hiddenCount; x++)
-            {
-                for (int y = 0; y < outputCount; y++)
-                {
-                    weightArrayIn[x, y] = inputWeights[x + inputCount + outputCount];
-                }
-            }
-            */
             changeIn = genArray(inputCount, hiddenCount);
             changeOut = genArray(hiddenCount, outputCount);
         }
@@ -362,7 +348,7 @@ namespace NueralNetworks
         public void train_the_network(int[][] train_example, int[][] target)
         {
             // or we could do while error > 0.005 
-            for (int f = 0; f < 300; f++)
+            for (int f = 0; f < 200; f++)
             {
                 double network_err = 0.0;
                 for (int g = 0; g < train_example.Length; g++)
@@ -374,7 +360,7 @@ namespace NueralNetworks
                     network_err += this.BackPropagate(LearningRate, MomentumRate, expected);
                 }
 
-                if (f % 100 == 0)
+                if (f % 10 == 0)
                 {
                     Console.WriteLine("Percent Error of Training Set: " + network_err);
                 }
