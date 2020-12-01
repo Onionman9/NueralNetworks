@@ -79,12 +79,40 @@ namespace NueralNetworks
         int outputCount;
         int[] inputWeights;
 
+        double activeInput;
+        double activeHidden;
+        double activeOutput;
+
+        double[,] weightMatrixIn;
+        double[,] weightMatrixOut;
+
         public NueralNet(int _inputCount, int _hiddenCount, int _outputCount, int[] _inputWeights) 
         {
-            inputCount = _inputCount;
+            inputCount = _inputCount + 1;
             hiddenCount = _hiddenCount;
             outputCount = _outputCount;
             inputWeights = _inputWeights;
+
+            activeInput = Convert.ToDouble(inputCount);
+            activeHidden = Convert.ToDouble(hiddenCount);
+            activeOutput = Convert.ToDouble(outputCount);
+
+            weightMatrixIn = genArray(inputCount, hiddenCount);
+            weightMatrixOut = genArray(hiddenCount, outputCount);
+        }
+
+        private double[,] genArray(int row, int col)
+        {
+            Random r = new Random();
+            double[,] temp_arr = new double[row, col];
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    temp_arr[i, j] = r.NextDouble();
+                }
+            }
+            return temp_arr;
         }
     }
 }
