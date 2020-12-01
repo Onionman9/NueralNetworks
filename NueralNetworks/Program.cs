@@ -203,14 +203,14 @@ namespace NueralNetworks
         /*
             Update the values within our network
          */
-        public double[] Update(int[] inputs) 
+        public double[] Update(int[] inputs)
         {
-            if (inputs.Length != inputCount - 1) 
+            if (inputs.Length != inputCount - 1)
             {
                 throw new Exception("NueralNet/update: Invalid Input array size!");
             }
 
-            for (int x = 0; x < inputCount - 1; x++) 
+            for (int x = 0; x < inputCount - 1; x++)
             {
                 activeInput[x] = inputs[x];
             }
@@ -220,15 +220,15 @@ namespace NueralNetworks
                 double sum = 0.0;
                 for (int y = 0; y < inputCount; y++)
                 {
-                    sum += (activeHidden[x] * weightArrayIn[y,x]);
+                    sum += (activeInput[x] * weightArrayIn[y, x]);
                 }
-                activeOutput[x] = Sigmoid(sum);
+                activeHidden[x] = Sigmoid(sum);
             }
 
             for (int x = 0; x < outputCount; x++)
             {
                 double sum = 0.0;
-                for (int y = 0; y < inputCount; y++)
+                for (int y = 0; y < hiddenCount; y++)
                 {
                     sum += (activeHidden[y] * weightArrayOut[y, x]);
                 }
@@ -376,7 +376,7 @@ namespace NueralNetworks
 
                 if (f % 100 == 0)
                 {
-                    Console.WriteLine("Percent Error of Training Set: ", network_err);
+                    Console.WriteLine("Percent Error of Training Set: " + network_err);
                 }
             }
         }
