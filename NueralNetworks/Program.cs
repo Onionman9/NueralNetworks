@@ -134,9 +134,29 @@ namespace NueralNetworks
                 throw new Exception("NueralNet/update: Invalid input array size!");
             }
 
-            for (int i = 0; i < inputCount - 1; i++) 
+            for (int x = 0; x < inputCount - 1; x++) 
             {
-                activeInput[i] = inputs[i];
+                activeInput[x] = inputs[x];
+            }
+
+            for (int x = 0; x < hiddenCount; x++)
+            {
+                double sum = 0.0;
+                for (int y = 0; y < inputCount; y++)
+                {
+                    sum += (activeHidden[y] * weightArrayIn[y,x]);
+                }
+                activeOutput[x] = Sigmoid(sum);
+            }
+
+            for (int x = 0; x < outputCount; x++)
+            {
+                double sum = 0.0;
+                for (int y = 0; y < inputCount; y++)
+                {
+                    sum += (activeHidden[y] * weightArrayOut[y, x]);
+                }
+                activeOutput[x] = Sigmoid(sum);
             }
         }
 
@@ -155,6 +175,20 @@ namespace NueralNetworks
                 }
             }
             return temp_arr;
+        }
+        /*
+            Define the Sigmoid Function
+         */
+        private static double Sigmoid(double x)
+        {
+            return (1.0 / (1.0 + Math.Exp(x)));
+        }
+        /*
+        Define the Sigmoid Derivation Function
+         */
+        private static double SigmoidDerivative(double x)
+        {
+            return (Sigmoid(x) * (1 - Sigmoid(x)));
         }
     }
 }
