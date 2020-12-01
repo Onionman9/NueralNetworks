@@ -11,7 +11,7 @@ namespace NueralNetworks
         static void Main(string[] args)
         {
             // 5 inputs
-            int[] training_input = new int[] { 0,0,1,0,1 };
+            int[] training_input = new int[] { 0, 0, 1, 0, 1 };
 
             // 2 outputs.
             int[] training_output = new int[] { 0, 1 };
@@ -49,7 +49,74 @@ namespace NueralNetworks
 
             //double learning_rate = 0.05;
             //double momentum = 0.1;
-           
+
+            int[][] training_example = new int[][]
+            {
+                new int[5] { 0,0,0,0,0 },
+                new int[5] { 0,0,0,0,1 },
+                new int[5] { 0,0,0,1,0 },
+                new int[5] { 0,0,1,0,0 },
+                new int[5] { 0,1,0,0,0 },
+                new int[5] { 0,0,0,1,1 },
+                new int[5] { 0,0,1,1,1 },
+                new int[5] { 0,1,1,1,1 },
+                new int[5] { 0,1,0,1,0 },
+                new int[5] { 0,0,1,0,1 },
+                new int[5] { 0,1,0,0,1 },
+                new int[5] { 0,1,0,1,1 },
+                new int[5] { 0,1,1,1,0 },
+
+                new int[5] { 1,0,0,0,0 },
+                new int[5] { 1,0,0,0,1 },
+                new int[5] { 1,0,0,1,0 },
+                new int[5] { 1,0,1,0,0 },
+                new int[5] { 1,1,0,0,0 },
+                new int[5] { 1,1,0,0,1 },
+                new int[5] { 1,1,0,1,0 },
+                new int[5] { 1,1,1,0,0 },
+                new int[5] { 1,1,1,0,1 },
+                new int[5] { 1,1,1,1,0 },
+                new int[5] { 1,1,1,1,1 },
+
+            };
+            int[][] corresponding_output = new int[][]
+            {
+                new int[] {0},
+                new int[] {1},
+                new int[] {1},
+                new int[] {1},
+                new int[] {1},
+                new int[] {0},
+                new int[] {1},
+                new int[] {0},
+                new int[] {0},
+                new int[] {0},
+                new int[] {0},
+                new int[] {1},
+                new int[] {1},
+
+                new int[] {1},
+                new int[] {0},
+                new int[] {0},
+                new int[] {0},
+                new int[] {0},
+                new int[] {1},
+                new int[] {1},
+                new int[] {1},
+                new int[] {0},
+                new int[] {0},
+                new int[] {1},
+            };
+
+            NueralNet myNetwork = new NueralNet(5, 3, 1);
+            myNetwork.train_the_network(training_example, corresponding_output);
+            int[][] test_case = new int[][]
+            {
+            new int[] { 1,0,1,0,1 },
+            new int[] { 0,0,1,1,0 }
+            };
+            myNetwork.check_Learned_network(test_case);
+
         }
 
         private static double Sigmoid(double x) 
@@ -74,6 +141,7 @@ namespace NueralNetworks
         //    }
         //    return temp_arr;
         //}
+
 
     }
 
@@ -263,6 +331,54 @@ namespace NueralNetworks
         }
         int[][] arr = new int[2][];
 
+        /*
+         Nueral Net method
+         */
+        public void check_Learned_network(int[][] input_5_bits)
+        {
+            double[] parity;
+            for (int m = 0; m < input_5_bits.Length; m++)
+            {
+                parity = Update(input_5_bits[m]);
 
+                printStuff(input_5_bits[m]);
+                foreach (int elem in parity)
+                {
+                    Console.Write(elem);
+                }
+                Console.WriteLine();
+            }
+        }
+
+        private void printStuff(int[] in_Array)
+        {
+            for (int i = 0; i < in_Array.Length; i++)
+            {
+                Console.Write(in_Array[i]);
+            }
+            Console.Write(" :\t");
+        }
+
+        public void train_the_network(int[][] train_example, int[][] target)
+        {
+            // or we could do while error > 0.005 
+            for (int f = 0; f < 300; f++)
+            {
+                double network_err = 0.0;
+                for (int g = 0; g < train_example.Length; g++)
+                {
+                    int[] input = train_example[g];
+                    int[] expected = target[g];
+
+                    this.Update(input);
+                    network_err += this.BackPropagate(LearningRate, MomentumRate, expected);
+                }
+
+                if (f % 100 == 0)
+                {
+                    Console.WriteLine("Percent Error of Training Set: ", network_err);
+                }
+            }
+        }
     }
 }
