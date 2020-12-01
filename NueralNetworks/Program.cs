@@ -134,7 +134,7 @@ namespace NueralNetworks
         /*
             Update the values within our network
          */
-        public void Update(double[] inputs) 
+        public void Update(int[] inputs) 
         {
             if (inputs.Length != inputCount - 1) 
             {
