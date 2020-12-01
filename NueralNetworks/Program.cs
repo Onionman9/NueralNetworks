@@ -10,46 +10,6 @@ namespace NueralNetworks
     {
         static void Main(string[] args)
         {
-            // 5 inputs
-            int[] training_input = new int[] { 0, 0, 1, 0, 1 };
-
-            // 2 outputs.
-            int[] training_output = new int[] { 0, 1 };
-
-            // 5 input nodes, 1 hidden layer (contains 2 nodes), and 1 output node indicate even or odd.
-            //double[,] weight_in = genArray(5, 2);
-            //double[,] weight_out = genArray(2, 1);
-
-            ///*
-            // Check first matrix
-            // */
-
-            //Console.WriteLine("\n Input_Matrix initial weights \n");
-            //for(int m = 0; m < 5; m++)
-            //{
-            //    for (int n = 0; n < 2; n++)
-            //    {
-            //        Console.Write(weight_in[m, n] + " ");
-            //    }
-            //    Console.WriteLine(); 
-            //}
-
-            ///*
-            //    Check Second matrix
-            // */
-            //Console.WriteLine("\n Output_Matrix initial weights \n");
-            //for (int m = 0; m < 2; m++)
-            //{
-            //    for (int n = 0; n < 1; n++)
-            //    {
-            //        Console.Write(weight_out[m, n] + " ");
-            //    }
-            //    Console.WriteLine();
-            //}
-
-            //double learning_rate = 0.05;
-            //double momentum = 0.1;
-
             int[][] training_example = new int[][]
             {
                 new int[5] { 0,0,0,0,0 },
@@ -121,36 +81,11 @@ namespace NueralNetworks
             myNetwork.check_Learned_network(test_case);
 
         }
-
-        private static double Sigmoid(double x) 
-        {
-            return (1.0 / (1.0 + Math.Exp((-1 * x))));
-        }
-
-        private static double SigmoidDerivative(double x)
-        {
-            return (Sigmoid(x) * (1 - Sigmoid(x)));
-        }
-        //private static double[,] genArray(int row, int col)
-        //{
-        //    Random r = new Random();
-        //    double[,] temp_arr = new double[row, col]; 
-        //    for(int i = 0; i < row; i++)
-        //    {
-        //        for (int j = 0; j < col; j++)
-        //        {
-        //            temp_arr[i,j] = r.NextDouble();
-        //        }
-        //    }
-        //    return temp_arr;
-        //}
-
-
     }
 
     class NueralNet 
     {
-        double LearningRate = 0.05;
+        double LearningRate = 0.5;
         double MomentumRate = 0.1;
         
         int inputCount;
@@ -348,7 +283,7 @@ namespace NueralNetworks
         public void train_the_network(int[][] train_example, int[][] target)
         {
             // or we could do while error > 0.005 
-            for (int f = 0; f < 200; f++)
+            for (int f = 0; f < 20000; f++)
             {
                 double network_err = 0.0;
                 for (int g = 0; g < train_example.Length; g++)
