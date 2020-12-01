@@ -79,9 +79,9 @@ namespace NueralNetworks
         int outputCount;
         int[] inputWeights;
 
-        double activeInput;
-        double activeHidden;
-        double activeOutput;
+        double[] activeInput;
+        double[] activeHidden;
+        double[] activeOutput;
 
         double[,] weightArrayIn;
         double[,] weightArrayOut;
@@ -98,9 +98,9 @@ namespace NueralNetworks
             outputCount = _outputCount;
             inputWeights = _inputWeights;
 
-            activeInput = Convert.ToDouble(inputCount);
-            activeHidden = Convert.ToDouble(hiddenCount);
-            activeOutput = Convert.ToDouble(outputCount);
+            activeInput = new double[inputCount];
+            activeHidden = new double[hiddenCount];
+            activeOutput = new double[outputCount];
 
             weightArrayIn = genArray(inputCount, hiddenCount);
             weightArrayOut = genArray(hiddenCount, outputCount);
@@ -123,6 +123,21 @@ namespace NueralNetworks
 
             changeIn = genArray(inputCount, hiddenCount);
             changeOut = genArray(hiddenCount, outputCount);
+        }
+        /*
+            Update the values within our netwrok
+         */
+        public void update(double[] inputs) 
+        {
+            if (inputs.Length != inputCount - 1) 
+            {
+                throw new Exception("NueralNet/update: Invalid input array size!");
+            }
+
+            for (int i = 0; i < inputCount - 1; i++) 
+            {
+                activeInput[i] = inputs[i];
+            }
         }
 
         /*
