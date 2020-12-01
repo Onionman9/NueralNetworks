@@ -55,7 +55,7 @@ namespace NueralNetworks
 
         private static double SigmoidDerivative(double x)
         {
-            return (1.0 - (x * x));
+            return (Sigmoid(x) * (1 - Sigmoid(x)));
         }
         private static double[,] genArray(int row, int col)
         {
