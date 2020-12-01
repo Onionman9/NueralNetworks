@@ -74,6 +74,17 @@ namespace NueralNetworks
 
     class NueralNet 
     {
-        
+        int inputCount;
+        int hiddenCount;
+        int outputCount;
+        int[] inputWeights;
+
+        public NueralNet(int _inputCount, int _hiddenCount, int _outputCount, int[] _inputWeights) 
+        {
+            inputCount = _inputCount;
+            hiddenCount = _hiddenCount;
+            outputCount = _outputCount;
+            inputWeights = _inputWeights;
+        }
     }
 }
