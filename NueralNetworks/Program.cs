@@ -171,7 +171,7 @@ namespace NueralNetworks
             Back Propigate and return the error as a double;
          */
 
-        public double BackPropagate(double learning_rate, double momentum, double[] the_target) 
+        public double BackPropagate(double learning_rate, double momentum, int[] the_target) 
         {
             if(the_target.Length != this.outputCount)
             {
