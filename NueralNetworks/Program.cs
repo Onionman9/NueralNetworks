@@ -1,5 +1,9 @@
 ﻿using System;
 
+/*
+    Author: Gage Glenn and Thang Nguyen
+ */
+
 namespace NueralNetworks
 {
     class Program
@@ -125,7 +129,7 @@ namespace NueralNetworks
             changeOut = genArray(hiddenCount, outputCount);
         }
         /*
-            Update the values within our netwrok
+            Update the values within our network
          */
         public void Update(double[] inputs) 
         {
