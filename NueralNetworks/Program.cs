@@ -83,8 +83,8 @@ namespace NueralNetworks
         double activeHidden;
         double activeOutput;
 
-        double[,] weightMatrixIn;
-        double[,] weightMatrixOut;
+        double[,] weightArrayIn;
+        double[,] weightArrayOut;
 
         public NueralNet(int _inputCount, int _hiddenCount, int _outputCount, int[] _inputWeights) 
         {
@@ -97,8 +97,10 @@ namespace NueralNetworks
             activeHidden = Convert.ToDouble(hiddenCount);
             activeOutput = Convert.ToDouble(outputCount);
 
-            weightMatrixIn = genArray(inputCount, hiddenCount);
-            weightMatrixOut = genArray(hiddenCount, outputCount);
+            weightArrayIn = genArray(inputCount, hiddenCount);
+            weightArrayOut = genArray(hiddenCount, outputCount);
+
+
         }
 
         private double[,] genArray(int row, int col)
