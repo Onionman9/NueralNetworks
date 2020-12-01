@@ -135,7 +135,7 @@ namespace NueralNetworks
         /*
             Update the values within our network
          */
-        public void Update(int[] inputs) 
+        public double[] Update(int[] inputs) 
         {
             if (inputs.Length != inputCount - 1) 
             {
@@ -166,6 +166,7 @@ namespace NueralNetworks
                 }
                 activeOutput[x] = Sigmoid(sum);
             }
+            return activeOutput;
         }
 
         /*
