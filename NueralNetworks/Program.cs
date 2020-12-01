@@ -54,7 +54,7 @@ namespace NueralNetworks
 
         private static double Sigmoid(double x) 
         {
-            return (1.0 / (1.0 + Math.Exp(x)));
+            return (1.0 / (1.0 + Math.Exp((-1 * x))));
         }
 
         private static double SigmoidDerivative(double x)
@@ -74,6 +74,7 @@ namespace NueralNetworks
         //    }
         //    return temp_arr;
         //}
+
     }
 
     class NueralNet 
@@ -259,5 +260,8 @@ namespace NueralNetworks
         {
             return (Sigmoid(x) * (1 - Sigmoid(x)));
         }
+        int[][] arr = new int[2][];
+
+
     }
 }
