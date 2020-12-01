@@ -14,29 +14,49 @@ namespace NueralNetworks
 
             // 5 input nodes, 1 hidden layer (contains 2 nodes), and 1 output node indicate even or odd.
             double[,] weight_in = genArray(5, 2);
-            //double[,] weight_out = genArray(2, 1);
+            double[,] weight_out = genArray(2, 1);
 
+            /*
+             Check first matrix
+             */
 
-            //for(int m = 0; m < 5; m++)
-            //{
-            //    for (int n = 0; n < 2; n++)
-            //    {
-            //        Console.Write(weight_in[m, n] + " ");
-            //    }
-            //    Console.WriteLine(); 
-            //}
+            Console.WriteLine("\n Input_Matrix initial weights \n");
+            for(int m = 0; m < 5; m++)
+            {
+                for (int n = 0; n < 2; n++)
+                {
+                    Console.Write(weight_in[m, n] + " ");
+                }
+                Console.WriteLine(); 
+            }
+
+            /*
+                Check Second matrix
+             */
+            Console.WriteLine("\n Output_Matrix initial weights \n");
+            for (int m = 0; m < 2; m++)
+            {
+                for (int n = 0; n < 1; n++)
+                {
+                    Console.Write(weight_out[m, n] + " ");
+                }
+                Console.WriteLine();
+            }
 
             double learning_rate = 0.05;
             double momentum = 0.1;
            
         }
 
-
         private static double Sigmoid(double x) 
         {
             return (1.0 / (1.0 + Math.Exp(x)));
         }
 
+        private static double SigmoidDerivative(double x)
+        {
+            return (1.0 - (x * x));
+        }
         private static double[,] genArray(int row, int col)
         {
             Random r = new Random();
@@ -50,5 +70,10 @@ namespace NueralNetworks
             }
             return temp_arr;
         }
+    }
+
+    class NueralNet 
+    {
+        
     }
 }
