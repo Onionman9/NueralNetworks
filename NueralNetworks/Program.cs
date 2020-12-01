@@ -103,7 +103,7 @@ namespace NueralNetworks
             inputCount = _inputCount + 1;
             hiddenCount = _hiddenCount;
             outputCount = _outputCount;
-            inputWeights = _inputWeights;
+            // inputWeights = _inputWeights;
 
             activeInput = new double[inputCount];
             activeHidden = new double[hiddenCount];
