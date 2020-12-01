@@ -67,16 +67,17 @@ namespace NueralNetworks
                 new int[] {0},
                 new int[] {1},
             };
-
             NueralNet myNetwork = new NueralNet(5, 3, 1);
             myNetwork.train_the_network(training_example, corresponding_output);
             int[][] test_case = new int[][]
             {
             new int[] { 1,0,1,0,1 },
+            new int[] { 0,0,0,0,0 },
             new int[] { 0,0,1,1,0 },
             new int[] { 1,1,1,1,1 },
             new int[] { 1,1,1,1,0 },
-            new int[] { 0,0,1,1,1 }
+            new int[] { 0,0,1,1,1 },
+            new int[] { 1,0,1,1,1 }
             };
             myNetwork.check_Learned_network(test_case);
 
@@ -263,6 +264,7 @@ namespace NueralNetworks
                 parity = Update(input_5_bits[m]);
 
                 printStuff(input_5_bits[m]);
+                Console.Write(parity[0]);
                 foreach (int elem in parity)
                 {
                     Console.Write(elem);
@@ -283,7 +285,7 @@ namespace NueralNetworks
         public void train_the_network(int[][] train_example, int[][] target)
         {
             // or we could do while error > 0.005 
-            for (int f = 0; f < 20000; f++)
+            for (int f = 0; f < 200; f++)
             {
                 double network_err = 0.0;
                 for (int g = 0; g < train_example.Length; g++)
@@ -297,7 +299,7 @@ namespace NueralNetworks
 
                 if (f % 10 == 0)
                 {
-                    Console.WriteLine("Percent Error of Training Set: " + network_err);
+                    Console.WriteLine("Percent Error: " + network_err);
                 }
             }
         }
