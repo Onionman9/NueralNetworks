@@ -161,6 +161,14 @@ namespace NueralNetworks
         }
 
         /*
+            Back Propigate and return the error as a double;
+         */
+
+        public double backPropigate() 
+        {
+            return 0.0;
+        }
+        /*
          Generates an Array and populates it with new weights between 0 and 1
          */
         private double[,] genArray(int row, int col)
