@@ -88,7 +88,9 @@ namespace NueralNetworks
 
         double[,] changeIn;
         double[,] changeOut;
-
+        /*
+            Nueral network constructor
+         */
         public NueralNet(int _inputCount, int _hiddenCount, int _outputCount, int[] _inputWeights) 
         {
             inputCount = _inputCount + 1;
@@ -123,7 +125,9 @@ namespace NueralNetworks
             changeOut = genArray(hiddenCount, outputCount);
         }
 
-
+        /*
+         Generates an Array and populates it with new weights between 0 and 1
+         */
         private double[,] genArray(int row, int col)
         {
             Random r = new Random();
