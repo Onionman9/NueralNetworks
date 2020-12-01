@@ -220,7 +220,7 @@ namespace NueralNetworks
                 double sum = 0.0;
                 for (int y = 0; y < inputCount; y++)
                 {
-                    sum += (activeHidden[y] * weightArrayIn[y,x]);
+                    sum += (activeHidden[x] * weightArrayIn[y,x]);
                 }
                 activeOutput[x] = Sigmoid(sum);
             }
