@@ -127,7 +127,7 @@ namespace NueralNetworks
         /*
             Update the values within our netwrok
          */
-        public void update(double[] inputs) 
+        public void Update(double[] inputs) 
         {
             if (inputs.Length != inputCount - 1) 
             {
@@ -164,7 +164,7 @@ namespace NueralNetworks
             Back Propigate and return the error as a double;
          */
 
-        public double backPropigate() 
+        public double BackPropagate() 
         {
             return 0.0;
         }
