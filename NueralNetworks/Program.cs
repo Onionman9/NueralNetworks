@@ -84,7 +84,7 @@ namespace NueralNetworks
         int inputCount;
         int hiddenCount;
         int outputCount;
-        int[] inputWeights;
+        // int[] inputWeights;
 
         double[] activeInput;
         double[] activeHidden;
@@ -98,7 +98,7 @@ namespace NueralNetworks
         /*
             Nueral network constructor
          */
-        public NueralNet(int _inputCount, int _hiddenCount, int _outputCount, int[] _inputWeights) 
+        public NueralNet(int _inputCount, int _hiddenCount, int _outputCount/*, int[] _inputWeights*/) 
         {
             inputCount = _inputCount + 1;
             hiddenCount = _hiddenCount;
@@ -111,7 +111,7 @@ namespace NueralNetworks
 
             weightArrayIn = genArray(inputCount, hiddenCount);      // weights for Input
             weightArrayOut = genArray(hiddenCount, outputCount);    // Weights for Output
-
+            /*
             for (int x = 0; x < inputCount; x++)
             {
                 for (int y = 0; y < hiddenCount; y++)
@@ -127,7 +127,7 @@ namespace NueralNetworks
                     weightArrayIn[x, y] = inputWeights[x + inputCount + outputCount];
                 }
             }
-
+            */
             changeIn = genArray(inputCount, hiddenCount);
             changeOut = genArray(hiddenCount, outputCount);
         }
